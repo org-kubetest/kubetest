@@ -53,6 +53,7 @@ jobs:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}        
         IMAGE_TAG: ${{ steps.commit.outputs.short }}
       run: |
-        curl -LO "https://dl.k8s.io/release/$(curl -LO https://dl.k8s.io/release/v1.17.0/bin/linux/amd64/kubectl)/tmp/kubectl"
-        /tmp/kubectl version
-        /tmp/kubectl apply -f deployment.yaml
+        curl -L  https://dl.k8s.io/release/v1.17.0/bin/linux/amd64/kubectl --output ~/kubectl
+        chmod +x ~/kubectl
+        ~/kubectl version
+        ~/kubectl apply -f deployment.yaml
