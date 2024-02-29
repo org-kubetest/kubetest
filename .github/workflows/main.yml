@@ -52,37 +52,13 @@ jobs:
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}        
         IMAGE_TAG: ${{ steps.commit.outputs.short }}
-        KUBECONFIG: | apiVersion: v1
-clusters:
-- cluster:
-    server: https://C797CCD9974CA2C8E7C0DDEAFCEEE070.gr7.ap-south-1.eks.amazonaws.com
-    certificate-authority-data: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUMvakNDQWVhZ0F3SUJBZ0lCQURBTkJna3Foa2lHOXcwQkFRc0ZBREFWTVJNd0VRWURWUVFERXdwcmRXSmwKY201bGRHVnpNQjRYRFRJME1ESXlPVEF5TXpRME1Wb1hEVE0wTURJeU5qQXlNelEwTVZvd0ZURVRNQkVHQTFVRQpBeE1LYTNWaVpYSnVaWFJsY3pDQ0FTSXdEUVlKS29aSWh2Y05BUUVCQlFBRGdnRVBBRENDQVFvQ2dnRUJBTFBHCkR4bWJpcSs2SVpBMkxhckhPQ2NPYlRuM1NheU1yM25uWlgzYXlLMTRJZEJZKzdnZ3NnMmtPVUhRM2c4YWJaTEEKTHRsblViaUFtbVJ2bEI0Tkl5VkQybHdkWjBXM2xJTUZuK3JoQ1UzTWxsMGNLTGRmOVRVSXFJOGZ3WkVZSWRKegp0dmZBaFNEWTdobWJUOWN1M2pYTHMzSDJ1S2VBbjgyWDdWSGZ5L1NIb05HWWVjZ3d3N2FDOUJmMTNaSkhheHFjCmVnTThidVB4SVZBQ2x6cjduZVZoeExsR2VvUGF1RTNtNC9PYjFQeUU5MWplM3E3eUt4N2NPcjlhZnNZL0RzSDAKTWRQNVBSSXlnY1ErWWdEYnFnVW9vWk9PczgyVGdoS0NVNmFvL3hZU21oTnZoZnRyQ2VCTFNYaDIvMDJzcUErZApJdXNseFVZa05rdStuMHpWV0RrQ0F3RUFBYU5aTUZjd0RnWURWUjBQQVFIL0JBUURBZ0trTUE4R0ExVWRFd0VCCi93UUZNQU1CQWY4d0hRWURWUjBPQkJZRUZHem1DYUtxTm1JN0pUbzVxdGM0b1NRSXMxeDlNQlVHQTFVZEVRUU8KTUF5Q0NtdDFZbVZ5Ym1WMFpYTXdEUVlKS29aSWh2Y05BUUVMQlFBRGdnRUJBSmUvY1VUR1FaaXJuNUNwM1dRRwptWlprY0FQOTBNTU9QalBCdEkwdVVxeFZ1ZUhWSUY0SHFrcC9VbWJ0RlRYSUptMElvaFk4bWtLSTFjbWpyNitNClVIcHZzS3lJNTN5RlhPUGdGaWdBZUlnQUtkYWVPMTkzUmVvVlp4UjhhcmY4THF0MzFZTEplQzJ5UldPYTZBbDAKdjY3OXpzVng2UG5IanZPN0N4WFFQcnlPcWFkMmFLZDRQZW5PSXN3TkxQdlRGM3lhaDJ0R1hOb1hZdmJOd3RxVApraFB4b0d1WDVCcjNLczZRd3BJaUR1NFEwRlpkTUtGVTYrdEk2ZjRWSnNVREl5a1dHK2ZWaVNNNjV1WjhxbFJvCnV4QWF2MkIzSWdpTUdNaUFEWUt2aTAzdGh5cnZFRTdGQWlLdGVXejNPVGF3MkxMdmYvSnc1cUovOXlyTW12NzQKaldJPQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==
-  name: kubernetes
-contexts:
-- context:
-    cluster: kubernetes
-    user: aws
-  name: aws
-current-context: aws
-kind: Config
-preferences: {}
-users:
-- name: aws
-  user:
-    exec:
-      apiVersion: client.authentication.k8s.io/v1alpha1
-      command: "aws-iam-authenticator"
-      args:
-        - "token"
-        - "-i"
-        - "stg-m4marry-k8s"
-        - "-r"
-        - "arn:aws:iam::842531496842:role/stg-m4marry-start_stop"
+        
       run: |
         curl -L  https://dl.k8s.io/release/v1.17.0/bin/linux/amd64/kubectl --output ~/kubectl
         chmod +x ~/kubectl
         curl -o ~/aws-iam-authenticator https://amazon-eks.s3.us-west-2.amazonaws.com/1.15.10/2020-02-22/bin/linux/amd64/aws-iam-authenticator
         chmod +x ~/aws-iam-authenticator
+        ls -al ~/aws-iam-authenticator
         env
         ~/kubectl version
         ~/kubectl config current-context
