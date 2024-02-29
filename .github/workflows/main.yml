@@ -57,6 +57,7 @@ jobs:
         chmod +x ~/kubectl
         ~/kubectl version
         export KUBECONFIG=kubeconfig 
+        cat $KUBECONFIG
         ~/kubectl config current-context
         ~/kubectl config use-context `~/kubectl config current-context`
         ~/kubectl config current-context
