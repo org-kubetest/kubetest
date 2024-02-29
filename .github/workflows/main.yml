@@ -52,7 +52,7 @@ jobs:
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}        
         IMAGE_TAG: ${{ steps.commit.outputs.short }}
-        
+        KUBECONFIG: kubeconfig
       run: |
         curl -L  https://dl.k8s.io/release/v1.17.0/bin/linux/amd64/kubectl --output ~/kubectl
         chmod +x ~/kubectl
