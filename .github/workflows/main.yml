@@ -56,8 +56,6 @@ jobs:
         curl -L  https://dl.k8s.io/release/v1.17.0/bin/linux/amd64/kubectl --output ~/kubectl
         chmod +x ~/kubectl
         ~/kubectl version
-        export KUBECONFIG=kubeconfig 
-        cat $KUBECONFIG
         ~/kubectl config current-context
         ~/kubectl config use-context `~/kubectl config current-context`
         ~/kubectl config current-context
