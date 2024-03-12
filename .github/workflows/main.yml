@@ -10,7 +10,7 @@ jobs:
   build:
     name: Deployment
     #runs-on: ubuntu-latest
-    runs-on: LT-23
+    runs-on: self-hosted
     steps:
     - name: Set short git commit SHA
       run: |
